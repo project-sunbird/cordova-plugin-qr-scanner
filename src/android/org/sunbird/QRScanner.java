@@ -59,7 +59,7 @@ public class QRScanner extends CordovaPlugin {
     }
 
 
-    private void showScanDialog(JSONArray args, CallbackContext callbackContext) throws JSONException {
+    private void showScanDialog(JSONArray args, final CallbackContext callbackContext) throws JSONException {
         stopScanner(null);
         
         if (cordova.getActivity().isFinishing()) {
@@ -89,7 +89,7 @@ public class QRScanner extends CordovaPlugin {
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        stopScanner(null);
+                        stopScanner(callbackContext);
                     }
                 });
 
@@ -140,7 +140,7 @@ public class QRScanner extends CordovaPlugin {
         mScanDialog = null;
 
         if (callbackContext != null) {
-            callbackContext.success();
+            callbackContext.success("cancel");
         }
     }
 }
