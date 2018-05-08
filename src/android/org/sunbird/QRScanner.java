@@ -2,11 +2,13 @@ package org.sunbird;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -123,7 +125,18 @@ public class QRScanner extends CordovaPlugin {
                 }
 
                 mScanDialog.setContentView(view);
-                mScanDialog.setCancelable(false);
+//                mScanDialog.setCancelable(false);
+
+                mScanDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+                        if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                            stopScanner(callbackContext);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
 
                 mScanDialog.show();
                 decoratedBarcodeView.resume();
