@@ -2,11 +2,11 @@ package org.sunbird;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -21,7 +21,6 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.sunbird.app.R;
 
 import java.util.List;
 
@@ -58,6 +57,11 @@ public class QRScanner extends CordovaPlugin {
         return true;
     }
 
+    private int getIdOfResource(String name, String resourceType) {
+        return cordova.getActivity().getResources().getIdentifier(name, resourceType,
+                cordova.getActivity().getApplicationInfo().packageName);
+    }
+
 
     private void showScanDialog(JSONArray args, final CallbackContext callbackContext) throws JSONException {
         stopScanner(null);
@@ -80,12 +84,12 @@ public class QRScanner extends CordovaPlugin {
             public void run() {
                 Context context = webView.getContext();
 
-                View view = LayoutInflater.from(context).inflate(R.layout.qr_scanner_dialog, null);
+                View view = LayoutInflater.from(context).inflate(getIdOfResource("qr_scanner_dialog", "layout"), null);
 
-                Toolbar toolbar = view.findViewById(R.id.toolbar);
+                Toolbar toolbar = view.findViewById(getIdOfResource("toolbar", "id"));
                 toolbar.setTitle(title);
 
-                toolbar.setNavigationIcon(R.drawable.ic_action_arrow_left);
+                toolbar.setNavigationIcon(getIdOfResource("ic_action_arrow_left", "drawable"));
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -93,8 +97,8 @@ public class QRScanner extends CordovaPlugin {
                     }
                 });
 
-                DecoratedBarcodeView decoratedBarcodeView = view.findViewById(R.id.qr_scanner);
-                TextView titleTextView = view.findViewById(R.id.display_text);
+                DecoratedBarcodeView decoratedBarcodeView = view.findViewById(getIdOfResource("qr_scanner", "id"));
+                TextView titleTextView = view.findViewById(getIdOfResource("display_text", "id"));
                 decoratedBarcodeView.setStatusText(null);
 
                 titleTextView.setText(displayText);
@@ -123,7 +127,18 @@ public class QRScanner extends CordovaPlugin {
                 }
 
                 mScanDialog.setContentView(view);
-                mScanDialog.setCancelable(false);
+//                mScanDialog.setCancelable(false);
+
+                mScanDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+                        if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                            stopScanner(callbackContext);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
 
                 mScanDialog.show();
                 decoratedBarcodeView.resume();
