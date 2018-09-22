@@ -74,7 +74,7 @@ public class QRScanner extends CordovaPlugin {
 
         String displayText = args.optString(2, "Skip");
         String color = args.optString(3, "#0b0b0b");
-
+        boolean buttonUI = args.optBoolean(4, false);
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -94,6 +94,11 @@ public class QRScanner extends CordovaPlugin {
                 // }
                 // });
                 Button button_skip = view.findViewById(getIdOfResource("button_skip", "id"));
+                if (buttonUI) {
+                    button_skip.setVisibility(View.INVISIBLE);
+                } else {
+                    button_skip.setVisibility(View.VISIBLE);
+                }
                 button_skip.setText(displayText);
                 button_skip.setOnClickListener(new View.OnClickListener() {
                     @Override
