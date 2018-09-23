@@ -7,21 +7,17 @@
     android:background="#f3f3f5"
     android:orientation="vertical">
 
-
-    <!--<android.support.v7.widget.Toolbar-->
-    <!--android:id="@+id/toolbar"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="?android:attr/actionBarSize"-->
-    <!--android:theme="@style/Widget.AppCompat.Toolbar"-->
-    <!--android:background="#f3f3f5"-->
-    <!--android:paddingStart="16dp"-->
-    <!--android:paddingEnd="16dp"-->
-    <!--app:navigationIcon="@drawable/ic_action_arrow_left"-->
-    <!--app:titleTextColor="@android:color/black"-->
-    <!--app:title="@string/app_name">-->
-
-    <!--</android.support.v7.widget.Toolbar>-->
-
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="#f3f3f5"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:theme="@style/Widget.AppCompat.Toolbar"
+        app:navigationIcon="@drawable/ic_action_arrow_left"
+        app:title="@string/app_name"
+        app:titleTextColor="@android:color/black" />
 
     <TextView
         android:id="@+id/display_text"
@@ -29,16 +25,15 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
-        android:textSize="14sp"
+        android:gravity="center_horizontal"
+        android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="20dp"
-        android:paddingBottom="10dp"
-        android:gravity="center_horizontal"
+        android:textSize="14sp"
         tools:text="Point your phone to the QR code to scan it"
         tools:textColor="#0b0b0b" />
-    <!--tools:textColor="#0000ff"-->
-    <!--tools:text="Scan the QR code with your phone camera"-->
+
     <Button
         android:id="@+id/button_skip"
         android:layout_width="102dp"
@@ -47,17 +42,15 @@
         android:layout_marginBottom="5dp"
         android:background="@drawable/rounded_button"
         android:textAllCaps="false"
+        android:textSize="14sp"
         tools:text="Skip"
-        tools:textColor="#ffffff"
-        android:textSize="14sp" />
-
+        tools:textColor="#ffffff" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_scanqrdemo" />
-
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/qr_scanner"
