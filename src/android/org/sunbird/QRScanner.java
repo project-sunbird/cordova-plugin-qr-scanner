@@ -70,9 +70,9 @@ public class QRScanner extends CordovaPlugin {
 
         Log.i("hello", cordova.getActivity().getPackageName());
 
-        String title = args.optString(1, "Point your phone to the QR code to scan it");
+        String displayText = args.optString(1, "Point your phone to the QR code to scan it");
 
-        String displayText = args.optString(2, "Skip");
+        String buttonText = args.optString(2, "Skip");
         String color = args.optString(3, "#0b0b0b");
         boolean buttonUI = args.optBoolean(4, false);
         cordova.getActivity().runOnUiThread(new Runnable() {
@@ -99,7 +99,7 @@ public class QRScanner extends CordovaPlugin {
                 } else {
                     button_skip.setVisibility(View.VISIBLE);
                 }
-                button_skip.setText(displayText);
+                button_skip.setText(buttonText);
                 button_skip.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -110,7 +110,7 @@ public class QRScanner extends CordovaPlugin {
                 TextView titleTextView = view.findViewById(getIdOfResource("display_text", "id"));
                 decoratedBarcodeView.setStatusText(null);
 
-                titleTextView.setText(title);
+                titleTextView.setText(displayText);
                 titleTextView.setTextColor(Color.parseColor(color));
 
                 decoratedBarcodeView.decodeSingle(new BarcodeCallback() {
