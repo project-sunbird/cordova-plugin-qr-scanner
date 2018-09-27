@@ -43,13 +43,13 @@ public class QRScanner extends CordovaPlugin {
             String type = args.getString(0);
 
             switch (type) {
-                case START_SCANNING:
-                    showScanDialog(args, callbackContext);
-                    break;
+            case START_SCANNING:
+                showScanDialog(args, callbackContext);
+                break;
 
-                case STOP_SCANNING:
-                    stopScanner(callbackContext);
-                    break;
+            case STOP_SCANNING:
+                stopScanner(callbackContext, false);
+                break;
             }
         }
 
@@ -62,7 +62,7 @@ public class QRScanner extends CordovaPlugin {
     }
 
     private void showScanDialog(JSONArray args, final CallbackContext callbackContext) throws JSONException {
-        stopScanner(null);
+        stopScanner(null, false);
 
         if (cordova.getActivity().isFinishing()) {
             return;
@@ -88,7 +88,7 @@ public class QRScanner extends CordovaPlugin {
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        stopScanner(callbackContext);
+                        stopScanner(callbackContext, false);
                     }
                 });
 
@@ -102,7 +102,7 @@ public class QRScanner extends CordovaPlugin {
                 button_skip.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        stopScanner(callbackContext);
+                        stopScanner(callbackContext, true);
                     }
                 });
 
@@ -132,7 +132,8 @@ public class QRScanner extends CordovaPlugin {
                 if ((cordova.getActivity().getWindow().getAttributes().flags
                         & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager.LayoutParams.FLAG_FULLSCREEN) {
 
-                    mScanDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                    mScanDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                            WindowManager.LayoutParams.FLAG_FULLSCREEN);
                 }
 
                 mScanDialog.setContentView(view);
@@ -142,7 +143,7 @@ public class QRScanner extends CordovaPlugin {
                     @Override
                     public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
                         if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-                            stopScanner(callbackContext);
+                            stopScanner(callbackContext, false);
                             return true;
                         }
                         return false;
@@ -155,7 +156,7 @@ public class QRScanner extends CordovaPlugin {
         });
     }
 
-    private void stopScanner(CallbackContext callbackContext) {
+    private void stopScanner(CallbackContext callbackContext, boolean skipClicked) {
         if (mScanDialog != null && mScanDialog.isShowing()) {
             mScanDialog.dismiss();
         }
@@ -163,7 +164,11 @@ public class QRScanner extends CordovaPlugin {
         mScanDialog = null;
 
         if (callbackContext != null) {
-            callbackContext.success("cancel");
+            if (skipClicked) {
+                callbackContext.success("skip");
+            } else {
+                callbackContext.success("cancel");
+            }
         }
     }
 }
