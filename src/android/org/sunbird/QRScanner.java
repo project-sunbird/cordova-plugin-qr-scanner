@@ -48,7 +48,7 @@ public class QRScanner extends CordovaPlugin {
                 break;
 
             case STOP_SCANNING:
-                stopScanner(callbackContext, false);
+                stopScanner();
                 break;
             }
         }
@@ -62,7 +62,7 @@ public class QRScanner extends CordovaPlugin {
     }
 
     private void showScanDialog(JSONArray args, final CallbackContext callbackContext) throws JSONException {
-        stopScanner(null, false);
+        stopScanner();
 
         if (cordova.getActivity().isFinishing()) {
             return;
@@ -88,7 +88,7 @@ public class QRScanner extends CordovaPlugin {
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        stopScanner(callbackContext, false);
+                        callbackContext.success("cancel");
                     }
                 });
 
@@ -102,7 +102,7 @@ public class QRScanner extends CordovaPlugin {
                 button_skip.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        stopScanner(callbackContext, true);
+                        callbackContext.success("skip");
                     }
                 });
 
@@ -137,13 +137,13 @@ public class QRScanner extends CordovaPlugin {
                 }
 
                 mScanDialog.setContentView(view);
-                // mScanDialog.setCancelable(false);
 
                 mScanDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
                     @Override
                     public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
                         if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-                            stopScanner(callbackContext, false);
+                            callbackContext.success("cancel");
+                            stopScanner();
                             return true;
                         }
                         return false;
@@ -156,19 +156,13 @@ public class QRScanner extends CordovaPlugin {
         });
     }
 
-    private void stopScanner(CallbackContext callbackContext, boolean skipClicked) {
+    private void stopScanner() {
         if (mScanDialog != null && mScanDialog.isShowing()) {
             mScanDialog.dismiss();
+
         }
 
         mScanDialog = null;
 
-        if (callbackContext != null) {
-            if (skipClicked) {
-                callbackContext.success("skip");
-            } else {
-                callbackContext.success("cancel");
-            }
-        }
     }
 }
