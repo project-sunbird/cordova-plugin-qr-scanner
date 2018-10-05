@@ -143,7 +143,6 @@ public class QRScanner extends CordovaPlugin {
                     public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
                         if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
                             callbackContext.success("cancel");
-                            stopScanner();
                             return true;
                         }
                         return false;
