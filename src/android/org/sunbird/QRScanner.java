@@ -88,7 +88,7 @@ public class QRScanner extends CordovaPlugin {
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        callbackContext.success("cancel");
+                        callbackContext.success("cancel_nav_back");
                     }
                 });
 
@@ -142,7 +142,7 @@ public class QRScanner extends CordovaPlugin {
                     @Override
                     public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
                         if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-                            callbackContext.success("cancel");
+                            callbackContext.success("cancel_hw_back");
                             return true;
                         }
                         return false;
