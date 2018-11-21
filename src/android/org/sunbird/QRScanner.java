@@ -73,6 +73,7 @@ public class QRScanner extends CordovaPlugin {
         String displayTextColor = args.optString(3, "#0b0b0b");
         String buttonText = args.optString(4, "Skip");
         boolean showButton = args.optBoolean(5, false);
+        boolean isRtl = args.optBoolean(6, false);
 
         cordova.getActivity().runOnUiThread(new Runnable() {
             @Override
@@ -84,7 +85,12 @@ public class QRScanner extends CordovaPlugin {
                 Toolbar toolbar = view.findViewById(getIdOfResource("toolbar", "id"));
                 toolbar.setTitle(title);
 
-                toolbar.setNavigationIcon(getIdOfResource("ic_action_arrow_left", "drawable"));
+                if (isRtl) {
+                    view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+                    toolbar.setNavigationIcon(getIdOfResource("ic_action_arrow_right", "drawable"));
+                } else {
+                    toolbar.setNavigationIcon(getIdOfResource("ic_action_arrow_left", "drawable"));
+                }
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
