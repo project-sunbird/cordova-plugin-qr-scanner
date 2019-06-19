@@ -36,6 +36,7 @@ public class QRScanner extends CordovaPlugin {
     private static final String STOP_SCANNING = "stopScanner";
 
     private Dialog mScanDialog = null;
+    private DecoratedBarcodeView decoratedBarcodeView = null;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -112,7 +113,7 @@ public class QRScanner extends CordovaPlugin {
                     }
                 });
 
-                DecoratedBarcodeView decoratedBarcodeView = view.findViewById(getIdOfResource("qr_scanner", "id"));
+                decoratedBarcodeView = view.findViewById(getIdOfResource("qr_scanner", "id"));
                 TextView titleTextView = view.findViewById(getIdOfResource("display_text", "id"));
                 decoratedBarcodeView.setStatusText(null);
 
@@ -166,7 +167,15 @@ public class QRScanner extends CordovaPlugin {
             mScanDialog.dismiss();
 
         }
-
+        if(decoratedBarcodeView!=null){
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    decoratedBarcodeView.pause();
+                    decoratedBarcodeView = null;
+                }
+            });
+        }
         mScanDialog = null;
 
     }
