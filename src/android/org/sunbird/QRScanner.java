@@ -145,16 +145,18 @@ public class QRScanner extends CordovaPlugin {
 
                 mScanDialog.setContentView(view);
 
-                mScanDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                    @Override
-                    public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
-                        if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-                            callbackContext.success("cancel_hw_back");
-                            return true;
+                if (mScanDialog != null) {
+                    mScanDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                        @Override
+                        public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+                            if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                                callbackContext.success("cancel_hw_back");
+                                return true;
+                            }
+                            return false;
                         }
-                        return false;
-                    }
-                });
+                    });
+                }
 
                 mScanDialog.show();
                 decoratedBarcodeView.resume();
@@ -167,15 +169,15 @@ public class QRScanner extends CordovaPlugin {
             mScanDialog.dismiss();
 
         }
-        if(decoratedBarcodeView!=null){
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (decoratedBarcodeView != null) {
                     decoratedBarcodeView.pause();
                     decoratedBarcodeView = null;
                 }
-            });
-        }
+            }
+        });
         mScanDialog = null;
 
     }
