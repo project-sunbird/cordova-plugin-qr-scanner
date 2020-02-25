@@ -36,6 +36,7 @@ public class QRScanner extends CordovaPlugin {
     private static final String STOP_SCANNING = "stopScanner";
 
     private Dialog mScanDialog = null;
+    private DecoratedBarcodeView decoratedBarcodeView = null;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -112,7 +113,7 @@ public class QRScanner extends CordovaPlugin {
                     }
                 });
 
-                DecoratedBarcodeView decoratedBarcodeView = view.findViewById(getIdOfResource("qr_scanner", "id"));
+                decoratedBarcodeView = view.findViewById(getIdOfResource("qr_scanner", "id"));
                 TextView titleTextView = view.findViewById(getIdOfResource("display_text", "id"));
                 decoratedBarcodeView.setStatusText(null);
 
@@ -123,7 +124,7 @@ public class QRScanner extends CordovaPlugin {
                     @Override
                     public void barcodeResult(BarcodeResult result) {
                         Log.i("QRScanner", "barcodeResult: " + result.getText());
-                          if (decoratedBarcodeView == null) {
+                        if (decoratedBarcodeView == null) {
                             Log.e("decoratedBarcodeView", "Error: decoratedBarcodeView is null. Returning");
                             return;
                         }
@@ -148,16 +149,18 @@ public class QRScanner extends CordovaPlugin {
 
                 mScanDialog.setContentView(view);
 
-                mScanDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                    @Override
-                    public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
-                        if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-                            callbackContext.success("cancel_hw_back");
-                            return true;
+                if (mScanDialog != null) {
+                    mScanDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                        @Override
+                        public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+                            if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                                callbackContext.success("cancel_hw_back");
+                                return true;
+                            }
+                            return false;
                         }
-                        return false;
-                    }
-                });
+                    });
+                }
 
                 mScanDialog.show();
                 decoratedBarcodeView.resume();
@@ -170,7 +173,15 @@ public class QRScanner extends CordovaPlugin {
             mScanDialog.dismiss();
 
         }
-
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (decoratedBarcodeView != null) {
+                    decoratedBarcodeView.pause();
+                    decoratedBarcodeView = null;
+                }
+            }
+        });
         mScanDialog = null;
 
     }
