@@ -124,11 +124,9 @@ public class QRScanner extends CordovaPlugin {
                     @Override
                     public void barcodeResult(BarcodeResult result) {
                         Log.i("QRScanner", "barcodeResult: " + result.getText());
-                        if (decoratedBarcodeView == null) {
-                            Log.e("decoratedBarcodeView", "Error: decoratedBarcodeView is null. Returning");
-                            return;
+                        if (decoratedBarcodeView != null) {
+                            decoratedBarcodeView.pause();
                         }
-                        decoratedBarcodeView.pause();
                         callbackContext.success(result.getText());
                     }
 
