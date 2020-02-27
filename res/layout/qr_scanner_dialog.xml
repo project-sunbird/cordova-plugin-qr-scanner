@@ -55,7 +55,7 @@
                 android:background="@drawable/rounded_button"
                 android:textAllCaps="false"
                 android:textSize="14sp"
-                tools:text="I don't have any QR Code "
+                tools:text="I don't have a QR Code "
                 tools:textColor="#ffffff" />
     </com.journeyapps.barcodescanner.DecoratedBarcodeView>
 </LinearLayout>
