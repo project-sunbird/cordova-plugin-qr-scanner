@@ -18,6 +18,8 @@
         <source-file src="src/android/org/sunbird/QRScanner.java" target-dir="src/org/sunbird/" />
         <resource-file src="res/drawable/rounded_button.xml" target="res/drawable/rounded_button.xml"/>
         <resource-file src="res/drawable/ic_scanqrdemo.png" target="res/drawable/ic_scanqrdemo.png" />
+        <resource-file src="res/drawable/ic_question.png" target="res/drawable/ic_question.png" />
+
         <resource-file src="res/drawable-xxhdpi/ic_action_arrow_left.png" target="res/drawable-xxhdpi/ic_action_arrow_left.png" />
 <resource-file src="res/drawable-xxhdpi/ic_action_arrow_right.png" target="res/drawable-xxhdpi/ic_action_arrow_right.png" />
         <resource-file src="res/layout/qr_scanner_dialog.xml" target="res/layout/qr_scanner_dialog.xml" />

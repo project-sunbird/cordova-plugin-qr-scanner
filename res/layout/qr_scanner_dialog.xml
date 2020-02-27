@@ -35,18 +35,6 @@
         tools:text="Point your phone to the QR code to scan it"
         tools:textColor="#0b0b0b" />
 
-    <Button
-        android:id="@+id/button_skip"
-        android:layout_width="102dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/rounded_button"
-        android:textAllCaps="false"
-        android:textSize="14sp"
-        tools:text="Skip"
-        tools:textColor="#ffffff" />
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,7 +42,20 @@
         android:src="@drawable/ic_scanqrdemo" />
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
-        android:id="@+id/qr_scanner"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+            android:id="@+id/qr_scanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <Button
+                android:id="@+id/button_skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/rounded_button"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                tools:text="I don't have any QR Code "
+                tools:textColor="#ffffff" />
+    </com.journeyapps.barcodescanner.DecoratedBarcodeView>
 </LinearLayout>

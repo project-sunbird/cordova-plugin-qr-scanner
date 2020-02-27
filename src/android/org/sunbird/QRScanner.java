@@ -72,7 +72,7 @@ public class QRScanner extends CordovaPlugin {
         String title = args.optString(1, "Scan QR Code");
         String displayText = args.optString(2, "Point your phone to the QR code to scan it");
         String displayTextColor = args.optString(3, "#0b0b0b");
-        String buttonText = args.optString(4, "Skip");
+        String buttonText = args.optString(4, "I don't have any QR Code");
         boolean showButton = args.optBoolean(5, false);
         boolean isRtl = args.optBoolean(6, false);
 
