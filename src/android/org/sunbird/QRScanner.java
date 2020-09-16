@@ -3,6 +3,7 @@ package org.sunbird;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.zxing.ResultPoint;
@@ -37,6 +39,8 @@ public class QRScanner extends CordovaPlugin {
 
     private Dialog mScanDialog = null;
     private DecoratedBarcodeView decoratedBarcodeView = null;
+    private SharedPreferences appSharedPreferences;
+    private String themeSelected;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -68,6 +72,8 @@ public class QRScanner extends CordovaPlugin {
         if (cordova.getActivity().isFinishing()) {
             return;
         }
+        appSharedPreferences = cordova.getActivity().getSharedPreferences("org.ekstep.genieservices.preference_file", Context.MODE_PRIVATE);
+        themeSelected = appSharedPreferences.getString("current_selected_theme", "JOYFUL");
 
         String title = args.optString(1, "Scan QR Code");
         String displayText = args.optString(2, "Point your phone to the QR code to scan it");
@@ -84,6 +90,18 @@ public class QRScanner extends CordovaPlugin {
                 View view = LayoutInflater.from(context).inflate(getIdOfResource("qr_scanner_dialog", "layout"), null);
 
                 Toolbar toolbar = view.findViewById(getIdOfResource("toolbar", "id"));
+                if (!themeSelected.equalsIgnoreCase("JOYFUL")) {
+                    view.setBackgroundColor(Color.parseColor("#f3f3f5"));
+                    View view1 = view.findViewById(getIdOfResource("walkthrough_scan", "id"));
+                    toolbar.setBackgroundColor(Color.parseColor("#f3f3f5"));
+                    view1.setBackgroundColor(Color.parseColor("#f3f3f5"));
+                    View oldScanLogoBackGround = view.findViewById(getIdOfResource("walkthrough_scan_image_layout", "id"));
+                    oldScanLogoBackGround.setBackgroundColor(Color.parseColor("#f3f3f5"));
+                    ImageView imageView = view.findViewById(getIdOfResource("joyful_new_scan_logo", "id"));
+                    imageView.setVisibility(View.GONE);
+                    ImageView oldScanScanLogo = view.findViewById(getIdOfResource("default_scan_logo", "id"));
+                    oldScanScanLogo.setVisibility(View.VISIBLE);
+                }
                 toolbar.setTitle(title);
 
                 if (isRtl) {
