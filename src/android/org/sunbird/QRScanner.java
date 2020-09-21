@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -26,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author vinayagasundar
@@ -73,7 +76,7 @@ public class QRScanner extends CordovaPlugin {
             return;
         }
         appSharedPreferences = cordova.getActivity().getSharedPreferences("org.ekstep.genieservices.preference_file", Context.MODE_PRIVATE);
-        themeSelected = appSharedPreferences.getString("current_selected_theme", "JOYFUL");
+        themeSelected = appSharedPreferences.getString("current_selected_theme", "DEFAULT");
 
         String title = args.optString(1, "Scan QR Code");
         String displayText = args.optString(2, "Point your phone to the QR code to scan it");
@@ -83,6 +86,7 @@ public class QRScanner extends CordovaPlugin {
         boolean isRtl = args.optBoolean(6, false);
 
         cordova.getActivity().runOnUiThread(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void run() {
                 Context context = webView.getContext();
@@ -161,6 +165,12 @@ public class QRScanner extends CordovaPlugin {
 
                     mScanDialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                }
+                if (themeSelected.equalsIgnoreCase("JOYFUL")) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        Objects.requireNonNull(mScanDialog.getWindow()).addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                        mScanDialog.getWindow().setStatusBarColor(Color.parseColor("#FFD954"));
+                    }
                 }
 
                 mScanDialog.setContentView(view);
