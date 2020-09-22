@@ -76,7 +76,7 @@ public class QRScanner extends CordovaPlugin {
             return;
         }
         appSharedPreferences = cordova.getActivity().getSharedPreferences("org.ekstep.genieservices.preference_file", Context.MODE_PRIVATE);
-        themeSelected = appSharedPreferences.getString("current_selected_theme", "DEFAULT");
+        themeSelected = appSharedPreferences.getString("current_selected_theme", "JOYFUL");
 
         String title = args.optString(1, "Scan QR Code");
         String displayText = args.optString(2, "Point your phone to the QR code to scan it");
