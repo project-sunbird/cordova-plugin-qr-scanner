@@ -19,9 +19,11 @@
         <resource-file src="res/drawable/rounded_button.xml" target="res/drawable/rounded_button.xml"/>
         <resource-file src="res/drawable/ic_scanqrdemo.png" target="res/drawable/ic_scanqrdemo.png" />
         <resource-file src="res/drawable/ic_question.xml" target="res/drawable/ic_question.xml" />
-
+        <resource-file src="res/drawable/ic_qr_scanner_background.xml" target="res/drawable/ic_qr_scanner_background.xml" />
+        <resource-file src="res/drawable/ic_scan_onboarding.xml" target="res/drawable/ic_scan_onboarding.xml" />
+        <resource-file src="res/drawable/joyful_left_bottom_rounded.xml" target="res/drawable/joyful_left_bottom_rounded.xml" />
         <resource-file src="res/drawable-xxhdpi/ic_action_arrow_left.png" target="res/drawable-xxhdpi/ic_action_arrow_left.png" />
-<resource-file src="res/drawable-xxhdpi/ic_action_arrow_right.png" target="res/drawable-xxhdpi/ic_action_arrow_right.png" />
+        <resource-file src="res/drawable-xxhdpi/ic_action_arrow_right.png" target="res/drawable-xxhdpi/ic_action_arrow_right.png" />
         <resource-file src="res/layout/qr_scanner_dialog.xml" target="res/layout/qr_scanner_dialog.xml" />
     </platform>
 </plugin>
