@@ -28,11 +28,9 @@
     </platform>
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-
             <feature name="qrScanner">
                 <param name="ios-package" value="qrScanner" />
             </feature>
-
         </config-file>
         <source-file src="src/ios/QRScanner.swift" />
     </platform>
