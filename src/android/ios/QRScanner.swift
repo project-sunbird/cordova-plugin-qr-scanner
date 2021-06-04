@@ -1,6 +1,7 @@
 import Foundation
 
-@objc(QRScanner) class QRScanner : CordovaPlugin { 
+@objc(QRScanner) class QRScanner : CordovaPlugin {
+    
 let screenTitle = ""
 let displayText = ""
 let displayTextColor ""
