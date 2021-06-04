@@ -1,6 +1,5 @@
 import Foundation
 
-
 @objc(QRScanner) class QRScanner : CordovaPlugin { 
 let screenTitle = ""
 let displayText = ""
@@ -13,7 +12,7 @@ let isRtl = ""
     @objc(startScanner:screenTitle, displayText, displayTextColor,
     buttonText, showButton, isRtl, success, error)
     func startScanner(_ command: CDVInvokedUrlCommand) {
-
+      
 
     }
 
@@ -22,7 +21,6 @@ let isRtl = ""
     func stopScanner(_ command: CDVInvokedUrlCommand) {
 
     }
-
-       
+  
 
 }
