@@ -15,6 +15,7 @@ let showButton : String? = ""
 let isRtl = ""
 
 
+
 // startScanner Method.
     @objc()
     startScanner:screenTitle, displayText, displayTextColor,
@@ -23,6 +24,7 @@ let isRtl = ""
 
 
     }
+
 
 
     // stopScanner Method.
