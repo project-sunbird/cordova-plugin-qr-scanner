@@ -15,16 +15,13 @@ let showButton : String? = ""
 let isRtl = ""
 
 
-
 // startScanner Method.
     @objc()
     startScanner:screenTitle, displayText, displayTextColor,
     buttonText, showButton, isRtl,success, error
     func startScanner(_ command: CDVInvokedUrlCommand) {
 
-
     }
-
 
 
     // stopScanner Method.
