@@ -22,6 +22,7 @@ let isRtl = ""
 
     }
     
+    
 
     // stopScanner Method.
     @objc()
