@@ -21,8 +21,7 @@ let isRtl = ""
     func startScanner(_ command: CDVInvokedUrlCommand) {
 
     }
-    
-    
+  
 
     // stopScanner Method.
     @objc()
