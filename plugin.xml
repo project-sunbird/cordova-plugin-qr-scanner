@@ -26,7 +26,7 @@
         <resource-file src="res/drawable-xxhdpi/ic_action_arrow_right.png" target="res/drawable-xxhdpi/ic_action_arrow_right.png" />
         <resource-file src="res/layout/qr_scanner_dialog.xml" target="res/layout/qr_scanner_dialog.xml" />
     </platform>
-
+    
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
