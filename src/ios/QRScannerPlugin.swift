@@ -16,6 +16,12 @@ let showButton : String? = ""
 
 let isRtl = ""
 
+private var ACTION_QR_SCANNER: String? = qrScanner
+private var START_SCANNING: String? = startScanner
+private var STOP_SCANNING: String? = stopScanner
+
+
+
 // startScanner Method.
     @objc(StartScanner:)
     startScanner:screenTitle, displayText, displayTextColor,
