@@ -278,7 +278,7 @@ class QRScannerPlugin : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
             scanning = true
         }
     }
-  // CancleScan.
+  // CancleScan method.
     @objc func cancelScan(_ command: CDVInvokedUrlCommand){
         if(self.prepScanner(command: command)){
             scanning = false
