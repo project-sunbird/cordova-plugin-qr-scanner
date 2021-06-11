@@ -195,7 +195,7 @@ class QRScannerPlugin : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
         }
         return captureDeviceInput
     }
-
+   // makeOpaque method.
     @objc func makeOpaque(){
         self.webView?.isOpaque = false
         self.webView?.backgroundColor = UIColor.clear
