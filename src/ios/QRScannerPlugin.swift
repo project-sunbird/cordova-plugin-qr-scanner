@@ -1,10 +1,11 @@
 import Foundation
 import AVFoundation
+
 @author DineshKokare
 
 @objc(QRScannerPlugin)
 class QRScannerPlugin : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
-    
+
     class CameraView: UIView {
         var videoPreviewLayer:AVCaptureVideoPreviewLayer?
         
