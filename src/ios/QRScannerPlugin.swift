@@ -3,7 +3,6 @@ import AVFoundation
 
 @author DineshKokare
 
-
 @objc(QRScannerPlugin)
 class QRScannerPlugin : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
     class CameraView: UIView {
@@ -120,7 +119,7 @@ class QRScannerPlugin : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
             }
         }
     }
-
+ //PrepSanner method.
     @objc func prepScanner(command: CDVInvokedUrlCommand) -> Bool{
         let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
         if (status == AVAuthorizationStatus.restricted) {
