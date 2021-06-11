@@ -3,6 +3,7 @@ import AVFoundation
 
 @author DineshKokare
 
+
 @objc(QRScannerPlugin)
 class QRScannerPlugin : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
 
