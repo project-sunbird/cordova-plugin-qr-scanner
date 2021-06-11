@@ -289,18 +289,22 @@ class QRScannerPlugin : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
             self.getStatus(command)
         }
     }
-
+   
+   //Show method.
     @objc func show(_ command: CDVInvokedUrlCommand) {
         self.webView?.isOpaque = false
         self.webView?.backgroundColor = UIColor.clear
         self.getStatus(command)
     }
 
+//Hide method.
     @objc func hide(_ command: CDVInvokedUrlCommand) {
         self.makeOpaque()
         self.getStatus(command)
     }
 
+
+ // Pause method.
     @objc func pausePreview(_ command: CDVInvokedUrlCommand) {
         if(scanning){
             paused = true;
@@ -310,6 +314,7 @@ class QRScannerPlugin : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
         self.getStatus(command)
     }
 
+  //Resume method.
     @objc func resumePreview(_ command: CDVInvokedUrlCommand) {
         if(paused){
             paused = false;
@@ -321,6 +326,7 @@ class QRScannerPlugin : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
 
     // backCamera is 0, frontCamera is 1
 
+ // UseCamera method.
     @objc func useCamera(_ command: CDVInvokedUrlCommand){
         let index = command.arguments[0] as! Int
         if(currentCamera != index){
@@ -362,6 +368,7 @@ class QRScannerPlugin : CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
         }
     }
 
+//enableLight method.
     @objc func enableLight(_ command: CDVInvokedUrlCommand) {
         if(self.prepScanner(command: command)){
             self.configureLight(command: command, state: true)
