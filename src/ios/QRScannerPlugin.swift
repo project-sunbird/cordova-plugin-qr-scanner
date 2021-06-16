@@ -28,6 +28,7 @@ func  boolean execute(Action:String, JSONArray:[args]) -> bool{
 
 }
 
+
 // startScanner Method.
     @objc(startScanner:)
     
@@ -45,7 +46,10 @@ let showButton : Boolean? = false
 
 let isRtl :Boolean? = false
 
-
+if(self.prepScanner(command: command)){
+            nextScanningCommand = command
+            scanning = true
+        }
        
 
     }
@@ -53,7 +57,13 @@ let isRtl :Boolean? = false
     // stopScanner Method.
     @objc(stopScanner:)
     func stopScanner(_ command: CDVInvokedUrlCommand) {
-
+     (self.prepScanner(command: command)){
+            scanning = false
+            if(nextScanningCommand != nil){
+                self.sendErrorCode(command: nextScanningCommand!, error: QRScannerError.scan_canceled)
+            }
+            self.getStatus(command)
+        }
 
     }
   
