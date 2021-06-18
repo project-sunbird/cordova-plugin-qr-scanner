@@ -9,35 +9,6 @@ let ACTION_QR_SCANNER = "qrScanner"
 let START_SCANNING = "startScanner"
 let STOP_SCANNING = "stopScanner"
 
- private  var  mScanDialog:String? = nil
- private  var decoratedBarcodeView:String? = nil
- private  var  themeSelected:String?
-
-func  boolean execute(Action:String, JSONArray:[args]) -> bool{
-	 if (action.equals(ACTION_QR_SCANNER)){
-		 String type = args.String(0)
-		    switch (type) {
-            case START_SCANNING:
-             showScanDialog(args)
-         break;
-     case STOP_SCANNING:
-     stopScanner();
-      break;
-         
-	          }
-	 }
-	  return true
-
-}
-
-func getIdOfResource(_ command: CDVInvokedUrlCommand){
-    var pluginResult:CDVPluginResult = CDVPluginResult.init(status: CDVCommandStatus_ERROR)
-        let resourceType = command.arguments[0] as? String ?? ""
-        let  name = command.arguments[1] as? String ?? ""
-return cordova.getActivity().getResources().getIdentifier(name, resourceType,
-cordova.getActivity().getApplicationInfo().packageName);
-}
-
 func sendErrorCode(command: CDVInvokedUrlCommand, error: QRScannerError){
         let pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: error.rawValue)
         commandDelegate!.send(pluginResult, callbackId:command.callbackId)
