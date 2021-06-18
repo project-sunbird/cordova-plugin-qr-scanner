@@ -4,21 +4,17 @@ import Foundation
 
 @objc(QRScannerPlugin) class QRScannerPlugin : CDVPlugin {   
 
-let ACTION_QR_SCANNER = "qrScanner"	
-let START_SCANNING = "startScanner"
-let STOP_SCANNING = "stopScanner"
+@objc(qrScanner:)
+func qrScanner (_ command: CDVInvokedUrlCommand){
 
+
+}
+
+//send errorcode.
 func sendErrorCode(command: CDVInvokedUrlCommand, error: QRScannerError){
         let pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: error.rawValue)
         commandDelegate!.send(pluginResult, callbackId:command.callbackId)
     }
-
-
-@objc(qrScanner:)
-func qrScanner (_ command: CDVInvokedUrlCommand){
-
-    
-}
 
 // startScanner Method.
     @objc(startScanner:)
