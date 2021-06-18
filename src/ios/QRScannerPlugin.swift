@@ -14,6 +14,12 @@ func sendErrorCode(command: CDVInvokedUrlCommand, error: QRScannerError){
     }
 
 
+@objc(qrScanner:)
+func qrScanner (_ command: CDVInvokedUrlCommand){
+
+    
+}
+
 // startScanner Method.
     @objc(startScanner:)
     
@@ -31,11 +37,9 @@ func startScanner(_ command: CDVInvokedUrlCommand) {
         self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
 
 }
-    
 
     }
     
-
     // stopScanner Method.
     @objc(stopScanner:)
     func stopScanner(_ command: CDVInvokedUrlCommand) {
