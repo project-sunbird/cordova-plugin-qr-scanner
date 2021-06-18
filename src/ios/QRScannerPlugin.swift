@@ -1,9 +1,8 @@
 import Foundation
-import AVFoundation
 
 @author DineshKokare
 
-@objc(QRScannerPlugin) class QRScannerPlugin : CordovaPlugin {   
+@objc(QRScannerPlugin) class QRScannerPlugin : CDVPlugin {   
 
 let ACTION_QR_SCANNER = "qrScanner"	
 let START_SCANNING = "startScanner"
@@ -27,24 +26,12 @@ func startScanner(_ command: CDVInvokedUrlCommand) {
        let buttonText = command.arguments[2] as? String ?? "I don't have a QR Code"
        let displayTextColor = command.arguments[3] as? String ?? "0b0b0b"
       
-      self.view = view(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-      self.view.autoresizingMask = [.flexibleWidth, .flexibleHeight];
-
-     self.Toolbar = Toolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-      self.Toolbar.autoresizingMask = [.flexibleWidth, .flexibleHeight];
-
-	var ImageView = ImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-      self.ImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight];
+      print("Start Scanning Successfully.")
+        pluginResult = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAs: "Start Scanning Successfully.")
+        self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
 
 }
-
-	runOnUiThread(new Runnable(){  
- 	
-		
-        }
-
-
-       
+    
 
     }
     
@@ -52,12 +39,11 @@ func startScanner(_ command: CDVInvokedUrlCommand) {
     // stopScanner Method.
     @objc(stopScanner:)
     func stopScanner(_ command: CDVInvokedUrlCommand) {
-     cordova.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-               
-            }
-        });
+       
+        print("Stop Scanning Successfully.")
+    
+      let pluginResult:CDVPluginResult = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAs: "Stop Scanning Successfully.")
+        self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
 
     }
   
