@@ -123,12 +123,31 @@ class CameraView: UIView {
 
 
 @objc(qrScanner:)
-func qrScanner (_ command: CDVInvokedUrlCommand){
+func qrScanner (_ command: CDVInvokedUrlCommand,_ commond: startScanner,_ commond: stopScanner){
 let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: "")
 commandDelegate!.send(pluginResult, callbackId:command.callbackId)
 
 }
+//Check method for startscanner and stopscanner.
+func  boolean execute(Action:String, JSONArray:[args]) -> bool{
+	 if (action.equals(ACTION_QR_SCANNER)){
+		 String type = args.String(0)
+		    switch (type) {
+   
+		         case START_SCANNING:
+                  startScanner();
+                         break;
 
+		        case STOP_SCANNING:
+                   stopScanner();
+     
+                        break;
+         
+	          }
+	 }
+	  return true
+
+}
 
 // startScanner Method.
     @objc(startScanner:)
