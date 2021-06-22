@@ -7,7 +7,8 @@ import AVFoundation
 
 class CameraView: UIView {
         var videoPreviewLayer:AVCaptureVideoPreviewLayer?
-        
+
+//Interface Method.:
         func interfaceOrientationToVideoOrientation(_ orientation : UIInterfaceOrientation) -> AVCaptureVideoOrientation {
             switch (orientation) {
             case UIInterfaceOrientation.portrait:
@@ -33,7 +34,6 @@ class CameraView: UIView {
             
             self.videoPreviewLayer?.connection?.videoOrientation = interfaceOrientationToVideoOrientation(UIApplication.shared.statusBarOrientation);
         }
-        
         
         func addPreviewLayer(_ previewLayer:AVCaptureVideoPreviewLayer?) {
             previewLayer!.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -148,7 +148,6 @@ func  boolean execute(Action:String, JSONArray:[args]) -> bool{
 	  return true
 
 }
-
 
 // startScanner Method.
     @objc(startScanner:)
