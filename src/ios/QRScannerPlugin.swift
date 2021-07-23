@@ -1,9 +1,8 @@
 import Foundation	
-	import AVFoundation
+import AVFoundation
 	
-	@author DineshKokare
-	
-	@objc(QRScannerPlugin) class QRScannerPlugin : CDVPlugin,AVCaptureMetadataOutputObjectsDelegate {
+
+@objc(QRScannerPlugin) class QRScannerPlugin : CDVPlugin,AVCaptureMetadataOutputObjectsDelegate {
 	
 	class CameraView: UIView {
 	var videoPreviewLayer:AVCaptureVideoPreviewLayer?
