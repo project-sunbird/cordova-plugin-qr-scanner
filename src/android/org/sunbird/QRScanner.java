@@ -94,6 +94,7 @@ public class QRScanner extends CordovaPlugin {
                 View view = LayoutInflater.from(context).inflate(getIdOfResource("qr_scanner_dialog", "layout"), null);
 
                 Toolbar toolbar = view.findViewById(getIdOfResource("toolbar", "id"));
+                TextView scannerTitle = view.findViewById(getIdOfResource("toolbarTextView", "id"));
                 if (!themeSelected.equalsIgnoreCase("JOYFUL")) {
                     view.setBackgroundColor(Color.parseColor("#f3f3f5"));
                     View view1 = view.findViewById(getIdOfResource("walkthrough_scan", "id"));
@@ -106,7 +107,7 @@ public class QRScanner extends CordovaPlugin {
                     ImageView oldScanScanLogo = view.findViewById(getIdOfResource("default_scan_logo", "id"));
                     oldScanScanLogo.setVisibility(View.VISIBLE);
                 }
-                toolbar.setTitle(title);
+                scannerTitle.setText(title);
 
                 if (isRtl) {
                     view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
@@ -136,6 +137,8 @@ public class QRScanner extends CordovaPlugin {
                 });
 
                 decoratedBarcodeView = view.findViewById(getIdOfResource("qr_scanner", "id"));
+                decoratedBarcodeView.setContentDescription("OR Scanner area");
+
                 TextView titleTextView = view.findViewById(getIdOfResource("display_text", "id"));
                 decoratedBarcodeView.setStatusText(null);
 

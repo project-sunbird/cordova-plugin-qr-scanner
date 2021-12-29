@@ -19,7 +19,18 @@
             app:navigationIcon="@drawable/ic_action_arrow_left"
             app:title="@string/app_name"
             app:titleTextColor="@android:color/black"
-            app:navigationContentDescription="Back" />
+            app:navigationContentDescription="Back" >
+            <TextView
+                android:id="@+id/toolbarTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Scan QR code"
+                android:contentDescription="Scan QR code, heading"
+                android:textColor="#0b0b0b"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
             android:id="@+id/walkthrough_scan"
@@ -74,7 +85,8 @@
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true">
 
         <com.journeyapps.barcodescanner.DecoratedBarcodeView
                 android:id="@+id/qr_scanner"
