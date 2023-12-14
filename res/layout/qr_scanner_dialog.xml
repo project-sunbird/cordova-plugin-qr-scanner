@@ -17,9 +17,15 @@
             android:paddingEnd="16dp"
             android:theme="@style/Widget.AppCompat.Toolbar"
             app:navigationIcon="@drawable/ic_action_arrow_left"
-            app:title="Sunbir"
             app:titleTextColor="@android:color/black"
-            app:navigationContentDescription="Back" />
+            app:navigationContentDescription="Back" >
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:textColor="#0b0b0b"
+        android:id="@+id/toolbar_title" />
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
             android:id="@+id/walkthrough_scan"
@@ -46,28 +52,11 @@
         <RelativeLayout
                 android:id="@+id/walkthrough_scan_image_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/ic_qr_scanner_background"
                 android:orientation="vertical">
 
-            <ImageView
-                    android:id="@+id/joyful_new_scan_logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_scan_onboarding"
-                    android:visibility="visible" />
 
-            <ImageView
-                    android:id="@+id/default_scan_logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_scanqrdemo"
-                    android:visibility="gone" />
 
         </RelativeLayout>
     </LinearLayout>

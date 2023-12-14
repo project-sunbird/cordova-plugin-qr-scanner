@@ -95,18 +95,18 @@ public class QRScanner extends CordovaPlugin {
 
                 Toolbar toolbar = view.findViewById(getIdOfResource("toolbar", "id"));
                 if (!themeSelected.equalsIgnoreCase("JOYFUL")) {
-                    view.setBackgroundColor(Color.parseColor("#f3f3f5"));
+                    view.setBackgroundColor(Color.parseColor("#FFBC00"));
                     View view1 = view.findViewById(getIdOfResource("walkthrough_scan", "id"));
-                    toolbar.setBackgroundColor(Color.parseColor("#f3f3f5"));
-                    view1.setBackgroundColor(Color.parseColor("#f3f3f5"));
+                    toolbar.setBackgroundColor(Color.parseColor("#FFBC00"));
+                    view1.setBackgroundColor(Color.parseColor("#FFBC00"));
                     View oldScanLogoBackGround = view.findViewById(getIdOfResource("walkthrough_scan_image_layout", "id"));
-                    oldScanLogoBackGround.setBackgroundColor(Color.parseColor("#f3f3f5"));
+                    oldScanLogoBackGround.setBackgroundColor(Color.parseColor("#FFBC00"));
                     ImageView imageView = view.findViewById(getIdOfResource("joyful_new_scan_logo", "id"));
                     imageView.setVisibility(View.GONE);
                     ImageView oldScanScanLogo = view.findViewById(getIdOfResource("default_scan_logo", "id"));
                     oldScanScanLogo.setVisibility(View.VISIBLE);
                 }
-                toolbar.setTitle(title);
+                // toolbar.setTitle(title);
 
                 if (isRtl) {
                     view.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
